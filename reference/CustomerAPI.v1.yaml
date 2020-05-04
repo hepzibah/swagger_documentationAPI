@@ -1,0 +1,12 @@
+openapi: 3.0.0
+info:
+  title: CustomerAPI
+  version: '1.0'
+  description: |
+    This API gets the customer information authenticated through Oauth, in tthe form of JSON.
+    Most of the feilds are madatory and the accepted example format is in the description.
+servers:
+  - url: 'http://localhost:8080'
+paths: {}
+components:
+  schemas: {}

@@ -7,6 +7,128 @@ info:
     Most of the feilds are madatory and the accepted example format is in the description.
 servers:
   - url: 'http://localhost:8080'
-paths: {}
+paths:
+  /customers:
+    post:
+      summary: customers
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+                required:
+                  - status
+                  - message
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+                  error_type:
+                    type: string
+                required:
+                  - status
+                  - message
+      operationId: post-customers
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+        - schema:
+            type: string
+          in: header
+          name: Activity-Id
+        - schema:
+            type: string
+          in: header
+          name: Application-Id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customerNumber:
+                  type: string
+                  default: C000000001
+                  maxLength: 10
+                firstName:
+                  type: string
+                  minLength: 10
+                  maxLength: 50
+                lastName:
+                  type: string
+                  minLength: 10
+                  maxLength: 50
+                birthdate:
+                  type: string
+                  default: DD-MM-YYYY
+                country:
+                  type: string
+                  example: india
+                countryCode:
+                  type: string
+                  maxLength: 2
+                mobileNumber:
+                  type: string
+                  example: '5555551216'
+                  maxLength: 10
+                email:
+                  type: string
+                  example: abc@gmail.com
+                  maxLength: 50
+                customerStatus:
+                  type: string
+                  enum:
+                    - Close
+                    - Suspended
+                    - Restored
+                    - Open
+                'address ':
+                  type: object
+                  required:
+                    - 'addressLine1 '
+                    - 'postalCode '
+                  properties:
+                    'addressLine1 ':
+                      type: string
+                      maxLength: 50
+                    'addressLine2 ':
+                      type: string
+                    street:
+                      type: string
+                    'postalCode ':
+                      type: string
+                      maxLength: 5
+              required:
+                - customerNumber
+                - firstName
+                - lastName
+                - birthdate
+                - country
+                - countryCode
+                - mobileNumber
+                - email
+                - customerStatus
+                - 'address '
+            examples:
+              example-1: {}
+        description: ''
+      description: Posting the Customer information
 components:
   schemas: {}
